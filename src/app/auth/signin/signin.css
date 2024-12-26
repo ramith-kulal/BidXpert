@@ -1,0 +1,22 @@
+.signin-container {
+    background-image: url('../../images/loginbc.jpg'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the container */
+    background-position: center; /* Centers the background image */
+    position: relative; /* For the pseudo-element */
+  }
+  
+  .signin-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Apply black background with opacity */
+    z-index: 1; /* Ensures the image stays below the form content */
+  }
+  
+  .signin-container > div {
+    z-index: 2; /* Ensures the form content appears above the background */
+  }
+  
