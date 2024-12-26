@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import prisma from '../../../../lib/prisma'; // Ensure you have the Prisma instance
 
 // Handle GET request for product details
-export async function GET(request: Request, context: { params: { id: string } }) {
+export async function GET(request, context) {
   let { id } = context.params;
   id = id.trim();
 
@@ -30,7 +30,7 @@ export async function GET(request: Request, context: { params: { id: string } })
 }
 
 // Handle POST request for placing a bid
-export async function POST(request: Request, context: { params: { id: string } }) {
+export async function POST(request, context) {
   let { id } = context.params;
   id = id.trim();
 

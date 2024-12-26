@@ -1,9 +1,8 @@
-// API route: POST request for placing a bid
 import { NextResponse } from 'next/server';
 import prisma from '../../../lib/prisma'; // Ensure you have the Prisma instance
 
 // Handle POST request for placing a bid
-export async function POST(request: Request, context: { params: { id: string } }) {
+export async function POST(request, context) {
   let { id } = context.params;
   id = id.trim();
 
@@ -23,7 +22,7 @@ export async function POST(request: Request, context: { params: { id: string } }
     await prisma.bid.create({
       data: {
         amount: bid,
-        userId: 3,
+        userId: userId, // Use the userId from the request
         itemId: parseInt(id, 10),
       },
     });

@@ -3,32 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-interface Product {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    startingBid: number;
-    currentBid: number;
-    auctionDuration: number;
-  }
-  
-  interface OtherProduct {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    startingBid: number;
-    currentBid: number;
-  }
-  
+
 export default function ProductPage() {
-    const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [otherProducts, setOtherProducts] = useState<OtherProduct[]>([]);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [otherProducts, setOtherProducts] = useState([]);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [userBid, setUserBid] = useState<number | string>(''); // Track the user's bid input
+  const [userBid, setUserBid] = useState(''); // Track the user's bid input
 
   const params = useParams();
   const id = params?.id;
@@ -74,13 +56,11 @@ export default function ProductPage() {
     setShowFullDescription(!showFullDescription);
   };
 
-  const handleProductClick = (productId: string) => {
+  const handleProductClick = (productId) => {
     router.push(`/products/${productId}`);
   };
 
- 
-
-  const handleBidChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBidChange = (e) => {
     setUserBid(e.target.value);
   };
 
@@ -131,7 +111,7 @@ export default function ProductPage() {
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen flex flex-col items-center py-12">
       <header className="bg-gray-800 w-full py-4">
-       <Navbar/>
+        <Navbar/>
       </header>
 
       <div className="container mx-auto p-4">
@@ -191,7 +171,7 @@ export default function ProductPage() {
         <div className="mt-12 w-full bg-gray-800 p-8 rounded-lg shadow-lg">
           <h3 className="text-2xl font-bold text-teal-400 mb-4">More Products</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {otherProducts.map((otherProduct: OtherProduct) => (
+            {otherProducts.map((otherProduct) => (
               <div
                 key={otherProduct.id}
                 className="bg-gray-700 p-4 rounded-lg cursor-pointer"

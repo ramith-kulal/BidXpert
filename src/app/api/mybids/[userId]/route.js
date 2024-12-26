@@ -1,14 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '../../../../lib/prisma';
 
-type Params = {
-  userId: string; // Ensure this matches the dynamic segment name
-};
-
-export async function GET(
-  request: Request,
-  context: { params: Params } // Adjust context to match Next.js expectations
-) {
+export async function GET(request, context) {
   try {
     const userId = context.params.userId || '2'; // Use `context.params` instead of `params`
 
