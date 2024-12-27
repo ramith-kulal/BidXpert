@@ -6,10 +6,8 @@ export async function POST(request, context) {
   let { id } = context.params;
   id = id.trim();
 
-  const { bid, userId } = await request.json();
-  console.log(`Received bid: $${bid} for product ID: ${id} by user ${userId}`);
-
-  // Add your validation and bid placement logic here...
+  const { bid } = await request.json();
+  console.log(`Received bid: $${bid} for product ID: ${id} by user `);
 
   try {
     // Logic for placing the bid
@@ -22,7 +20,7 @@ export async function POST(request, context) {
     await prisma.bid.create({
       data: {
         amount: bid,
-        userId: userId, // Using the userId received in the request body
+        userId: 3, // Using the userId received in the request body
         itemId: parseInt(id, 10),
       },
     });
@@ -30,7 +28,15 @@ export async function POST(request, context) {
     console.log(`Updated product with ID ${id}. New bid: $${bid}`);
     return NextResponse.json(updatedProduct);
   } catch (error) {
-    console.error('Error processing bid for product ID:', id, error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error(`Error processing bid for product ID: ${id}`, error);
+
+    // Ensure the error response is valid
+    return NextResponse.json(
+      {
+        error: 'Internal Server Error',
+        details: error.message || 'An unknown error occurred.',
+      },
+      { status: 500 }
+    );
   }
 }
