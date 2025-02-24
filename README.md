@@ -62,7 +62,7 @@ If deploying on Vercel, ensure the prisma generate command is part of the build 
 5.Run the application locally:
 Start the development server:
 ```bash
-npm run dev
+npm run dev 
 ```
 # Conclusion
 This project has been an excellent learning experience, helping me strengthen my skills in full-stack development, security, and deployment. I'm excited about the potential to further enhance the platform with new features and optimizations. Feel free to explore the project, and feel free to contribute or provide feedback. Thanks for checking it out!
